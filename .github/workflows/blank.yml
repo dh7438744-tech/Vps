@@ -35,6 +35,43 @@ jobs:
               Write-Host "`r🚀 Đang khởi tạo hệ thống... $($frames[$i % 8])" -NoNewline -ForegroundColor Blue
               Start-Sleep -Milliseconds 100
           }
+name: 🚀 SEVER AI STV PREMIUM
+
+on:
+  workflow_dispatch:
+    inputs:
+      duration:
+        description: '🕐 Thời gian sử dụng'
+        required: false
+        default: '5h40m'
+        type: choice
+        options:
+        - '1h'
+        - '3h' 
+        - '5h40m'
+
+jobs:
+  Premium-RDP-Setup:
+    runs-on: windows-latest
+    timeout-minutes: 340
+    
+    steps:
+      # BANNER CHÀO MỪNG
+      - name: 🎯 KHỞI ĐỘNG HỆ THỐNG
+        run: |
+          Write-Host ""
+          Write-Host ""
+          Write-Host "🤖 AI STV PREMIUM RDP SERVER" -ForegroundColor Yellow
+          Write-Host "⚡ Powered by AI STV" -ForegroundColor Green
+          Write-Host "🕒 Thời gian: ${{ github.event.inputs.duration }}" -ForegroundColor Magenta
+          Write-Host ""
+          
+          # Hiệu ứng loading
+          $frames = @('⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷')
+          for($i=0; $i -lt 10; $i++) {
+              Write-Host "`r🚀 Đang khởi tạo hệ thống... $($frames[$i % 8])" -NoNewline -ForegroundColor Blue
+              Start-Sleep -Milliseconds 100
+          }
           Write-Host "`r✅ Hệ thống đã sẵn sàng!                    " -ForegroundColor Green
 
       # CẤU HÌNH NÂNG CAO
@@ -406,18 +443,4 @@ jobs:
           )
           
           foreach($step in $cleanupSteps) {
-              Write-Host "│ 🗑️  $($step.Name)..." -NoNewline -ForegroundColor Gray
-              try {
-                  & $step.Script
-                  Write-Host "`r│ ✅ $($step.Name)" -ForegroundColor Green
-              } catch {
-                  Write-Host "`r│ ⚠️  $($step.Name) - Đã xử lý an toàn" -ForegroundColor Yellow
-              }
-              Start-Sleep -Milliseconds 300
-          }
-          
-          # Dọn dẹp jobs còn sót
-          Get-Job | Stop-Job -PassThru | Remove-Job -Force -ErrorAction SilentlyContinue
-          
-          Write-Host ""
-          Write-Host "🎉 Dọn dẹp hoàn tất! Hẹn gặp lại! 👋" -ForegroundColor Green
+              Write-Host "│ 🗑️  $($step.Name
